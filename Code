@@ -1,0 +1,92 @@
+#define _CRT_SECURE_NO_DEPRECATE
+#include <stdio.h>
+#include <stdlib.h>
+#define _USE_MATH_DEFINES
+#include <math.h>
+#define N 100
+//7 задание
+
+
+
+double* full_elements(double* ptr_array, int n);
+void put_elements(double* ptr_array, int n);
+int countBetween(double* ptr_array, int size, int A);
+
+double function(double x);
+
+
+int main()
+{
+
+	system("chcp 1251");
+	double array[N];
+	int size;
+	double search;
+
+	printf("Введите размер массива > ");
+	scanf("%d", &size);
+
+	full_elements(array, size);
+	
+	puts("Введите элемент, между двумя копиями которого будет происходить поиск");
+	scanf("%lf", &search);
+	printf("Количество элементов между двумя соседними %.2lf, равно %i", search, countBetween(array, size, search));
+
+
+
+}
+
+
+double* full_elements(double* ptr_array, int n)
+{
+	//7 Вариант
+	for (int i = 0; i < n; i++)
+	{
+
+		puts("Введите элемент массива");
+		scanf("%lf", &ptr_array[i]);
+	}
+	return ptr_array;
+
+}
+
+double function(double x)
+{
+	double y = x - 3 * pow(cos(x + 1), 2);
+	return y;
+}
+
+void put_elements(double* ptr_array, int n)
+{
+	printf("Элементы массива:\n");
+	for (int i = 0; i < n; i++)
+	{
+		printf("%8.2f ", ptr_array[i]);
+	}
+	printf("\n");
+}
+
+
+int countBetween(double* ptr_array, int size, int A) 
+{
+	int firstIndex = -1;
+	int count = 0;
+
+	for (int i = 0; i < size; i++) {
+		if (ptr_array[i] == A)
+		{
+			if (firstIndex == -1) 
+			{
+				firstIndex = i;
+			}
+			else 
+			{
+				count = i - firstIndex - 1;
+				break;
+			}
+		}
+	}
+
+	return count;
+}
+
